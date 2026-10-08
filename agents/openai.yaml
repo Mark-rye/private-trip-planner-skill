@@ -1,0 +1,7 @@
+interface:
+  display_name: "私人定制旅行规划专家"
+  short_description: "手机随身攻略、离线比例尺地图、预订看板与费用核对"
+  brand_color: "#1F6F78"
+  default_prompt: "使用 $private-trip-planner 为我规划一趟兼顾节奏、交通与预算的旅行，并生成交互地图。"
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+trip-map.html
+.DS_Store

@@ -1,0 +1,50 @@
+{
+  "title": "杭州两日 · 随身旅行手册",
+  "subtitle": "展示示例 · 2 人 · 地点坐标及时间仅用于演示",
+  "overview": "按片区慢慢走，保留午餐和休息窗口。此示例不代表实时旅行推荐，订单为虚构演示。",
+  "travelers": 2,
+  "base_currency": "CNY",
+  "preparations": ["出发前确认预约与天气，保存此页面供离线查看。"],
+  "risks": ["本页示例没有核验实时交通、票价或营业状态。"],
+  "days": [
+    {
+      "day": 1,
+      "title": "西湖慢游",
+      "summary": "湖边散步 → 博物馆 → 湖滨晚餐",
+      "stay": "湖滨片区示例住宿，今晚入住。",
+      "warnings": "午后及时休息；如天气转雨，优先保留室内参观。",
+      "meals": ["午餐：参观后找附近简餐，留出 1 小时休息。", "晚餐：湖滨片区，按体力决定是否继续散步。"],
+      "highlights": "把湖边散步与室内参观分开，减少连续步行。",
+      "culture": "此处可放与今日地点有关的历史与文物介绍，正文短读，来源另列。",
+      "alternative": "体力不足时删掉晚间散步，早点回酒店。",
+      "stops": [
+        {"order": 1, "name": "断桥残雪", "lat": 30.2591, "lng": 120.1488, "time": "09:00–10:00", "category": "湖边散步", "note": "地点坐标为展示示例；时间不构成当前推荐。"},
+        {"order": 2, "name": "浙江省博物馆孤山馆区 · 长地点名称手机换行示例", "lat": 30.2539, "lng": 120.1377, "time": "10:30–12:00", "category": "室内参观", "note": "开放与预约情况需单独核实。"},
+        {"order": 3, "name": "湖滨步行街", "lat": 30.2554, "lng": 120.1648, "time": "17:00–19:00", "category": "晚餐与休息"}
+      ],
+      "legs": [
+        {"from": 1, "to": 2, "mode": "walk", "duration_min": 25, "geometry_status": "schematic", "note": "仅展示格式，交通时间需核实。"},
+        {"from": 2, "to": 3, "mode": "transit", "duration_min": 30, "geometry_status": "schematic"}
+      ]
+    },
+    {
+      "day": 2,
+      "title": "运河与街区",
+      "summary": "运河街区慢游，下午收尾。",
+      "stay": "当天返程，不新增住宿。",
+      "booking_ids": ["hotel"],
+      "alternative": "雨天缩短露天步行，改为附近室内活动。",
+      "stops": [
+        {"order": 1, "name": "拱宸桥", "lat": 30.3194, "lng": 120.1418, "time": "09:30–10:30", "category": "街区"},
+        {"order": 2, "name": "小河直街", "lat": 30.3028, "lng": 120.1422, "time": "14:00–16:00", "category": "休闲"}
+      ],
+      "legs": [{"from": 1, "to": 2, "mode": "walk", "duration_min": 35, "geometry_status": "schematic"}]
+    }
+  ],
+  "bookings": [
+    {"id": "hotel", "name": "演示酒店套餐", "day": 1, "status": "booked", "paid": true, "amount": 600, "currency": "CNY", "note": "虚构订单，仅演示合计和套餐去重。"},
+    {"id": "breakfast", "name": "演示早餐", "day": 2, "status": "booked", "included_in": "hotel"},
+    {"id": "return", "name": "演示返程交通", "day": 2, "status": "pending", "amount": 200, "currency": "CNY", "priority": "高"},
+    {"id": "upgrade", "name": "演示可选晚餐升级", "status": "optional", "amount": 100, "currency": "CNY"}
+  ]
+}
