@@ -4,6 +4,9 @@
 
 ## 主要改进
 
+- 完整版逐项覆盖首屏、路线、速览、景区亮点、每日详程、住宿、餐厅、交通、费用预估、预订看板、预算报告、实用准备与来源；按用户示例的子模块和样例深度编写。
+- `detail_level: complete` 校验缺少模块和逐日内容，不能把简短技术演示当作详细攻略交付。
+- 已有完整 HTML 原稿可保留全部正文，增加逐日执行建议、冲突说明、章节导航、分地区比例尺地图，并将宽表格转为手机卡片。
 - 地图按天分色，地点使用“天数-顺序”编号。
 - 用地理坐标保留相对方向和距离，附北向标记及米/公里比例尺，虚线表示访问顺序。
 - 手机单列自然滚动，按天切换，支持 375–430px 窄屏和长地点名称换行。
@@ -42,7 +45,7 @@ python3 scripts/render_map.py --input trip-data.json --output trip-map.html
 python3 scripts/render_map.py --input trip-data.json --validate-only
 ```
 
-生成匿名演示：
+生成匿名技术演示（仅测试地图与数据接口，不是完整版攻略）：
 
 ```bash
 python3 scripts/render_map.py --input assets/example-trip.json --output trip-map.html
@@ -53,3 +56,13 @@ python3 scripts/render_map.py --input assets/example-trip.json --output trip-map
 
 完整攻略组织与账目规则见 [guide-blueprint.md](references/guide-blueprint.md)。
 示例订单均为虚构数据，本仓库不包含私人攻略或支付凭证。
+
+## 保留完整原稿制作手机版
+
+先按蓝本检查原稿模块覆盖，并写出独立的逐日执行补充与待核验信息，再运行：
+
+```bash
+python3 scripts/render_reference.py --input original.html --enhancements notes.json --output mobile-guide.html
+```
+
+`notes.json` 字段见蓝本。正文不会被压缩成摘要，原页面脚本与外部资源默认被阻止；仅嵌入的图片可离线显示。原稿与生成的私人阅读页不应提交到公开仓库。再次出行前仍须按新日期核验票价、班次、签证与演出。

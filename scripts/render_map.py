@@ -14,6 +14,7 @@ from pathlib import Path
 
 MODES = {"walk", "transit", "drive", "bike", "ferry", "train", "flight", "other"}
 STATUSES = {"verified", "schematic"}
+COMPLETE_MODULES = {"route", "overview", "highlights", "accommodation", "restaurants", "transport", "cost_estimate", "booking_dashboard", "budget_report", "practical", "sources"}
 
 
 def fail(message: str) -> None:
@@ -105,6 +106,24 @@ def validate(data: dict) -> None:
             fail("booking_ids must reference existing bookings")
     if "travelers" in data and (type(data["travelers"]) is not int or data["travelers"] < 1):
         fail("travelers must be a positive integer")
+    sections = data.get("guide_sections", [])
+    if not isinstance(sections, list):
+        fail("guide_sections must be a list")
+    for section in sections:
+        if not isinstance(section, dict) or not section.get("id") or not section.get("title"):
+            fail("guide sections need id and title")
+        if not section.get("paragraphs") and not section.get("cards"):
+            fail("guide section must contain written content, not only a heading")
+    if len({s["id"] for s in sections}) != len(sections):
+        fail("guide section ids must be unique")
+    if data.get("detail_level") == "complete":
+        missing = COMPLETE_MODULES - {s["id"] for s in sections}
+        if missing:
+            fail("complete guide missing modules: " + ", ".join(sorted(missing)))
+        for day in days:
+            for field in ("summary", "stay", "meals", "highlights", "culture", "warnings", "alternative"):
+                if not day.get(field):
+                    fail(f"complete guide day {day['day']} missing {field}")
 
 
 def booking_summary(data: dict) -> dict:
